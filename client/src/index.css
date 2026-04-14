@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-grid: #e5e7eb;
+  }
+  .dark {
+    --bg-grid: #1f2937;
+  }
+
+  body {
+    @apply bg-[#fafafa] text-slate-900 font-sans antialiased selection:bg-brand/30 selection:text-brand transition-colors duration-300;
+  }
+  
+  .dark body {
+    @apply bg-[#0a0a0a] text-slate-100 selection:text-brand;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    background-image: 
+      linear-gradient(to right, var(--bg-grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--bg-grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    opacity: 0.4;
+  }
+
+  /* Premium Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-300 dark:bg-slate-700 rounded-full; }
+}

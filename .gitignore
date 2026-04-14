@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Environment Variables (Keep secrets safe!)
+.env
+
+# Build outputs
+dist/
+build/
+.vite/
+
+# OS Files
+.DS_Store
