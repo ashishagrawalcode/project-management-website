@@ -26,7 +26,7 @@ const Projects = () => {
 
   const fetchProjects = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/projects");
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}api/projects`);
       setProjects(data);
     } catch (error) {
       console.error("Failed to fetch projects", error);
@@ -40,7 +40,7 @@ const Projects = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const { data } = await axios.post("http://localhost:5000/api/projects", formData);
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}api/projects`, formData);
       setProjects([data, ...projects]); 
       setIsModalOpen(false);
       setFormData({ title: "", description: "", status: "Planning", deadline: "" });
@@ -58,7 +58,7 @@ const Projects = () => {
     if(!window.confirm("Are you sure you want to delete this project? All associated tasks will be orphaned.")) return;
     
     try {
-      await axios.delete(`http://localhost:5000/api/projects/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}api/projects/${id}`);
       setProjects(projects.filter(p => p._id !== id));
     } catch (error) {
       console.error("Failed to delete", error);
